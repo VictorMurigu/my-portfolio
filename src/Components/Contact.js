@@ -1,7 +1,20 @@
 import emailjs from '@emailjs/browser';
 import { useRef } from "react";
+import { useState, useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Contact = () => {
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    },3000)
+  },[])
+
+
+
     const form = useRef();
      const sendEmail = (e) => {
     e.preventDefault();
@@ -22,12 +35,23 @@ const Contact = () => {
               <p className="clientsDesc">
                   I have opportunities to work with a diverse group of companies.
               </p>
-              <div className="clientImgs">
+              {loading ? <div>
+        <ClipLoader
+        color={"#0000FF"}
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+              </div> :
+       <div className="clientImgs">
                   <img className="clientImg" src="./images/freeCodeCamp2.png" alt="" />
                   <img className="clientImg" src="./images/slacklogo2.png" alt="" />
                   <img className="clientImg" src="./images/jquery1.png" alt="" />
                    <img className="clientImg" src="./images/linkedin2.png" alt=""/>
               </div>
+      }
+             
           </div>
           <div id="contacts">
               <h1 className="contactTitle ">Contact Me</h1>

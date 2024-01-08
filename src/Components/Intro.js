@@ -1,7 +1,20 @@
 import { Link } from 'react-scroll';
+import { useState, useEffect } from "react";
+import PulseLoader from "react-spinners/PulseLoader";
 
 
 const Intro = () => {
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    },3000)
+  },[])
+
+
+
     return (
       <section id="intro">
             <div className="introContent">
@@ -21,11 +34,8 @@ const Intro = () => {
                     
                 
             </div>
-            <div>
-                <img src="./images/portfolioimg2.jpg" alt="profile" className="profileImg"/>
-
-            </div>
-            
+     {loading ? <div>
+        <PulseLoader sizeUnit={"px"} size={8} color={"#daa520"} loading={true} /></div> : <div><img src="./images/opt-portfolioimg2.jpeg" alt="profile" className="profileImg"/> </div>}   
       </section>
    
   )
